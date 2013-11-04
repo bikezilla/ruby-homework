@@ -4,9 +4,7 @@ module Enumerable
     result = []
 
     self.each_slice(step) do |slice|
-      line = slice.slice(0, length)
-      line |= pad if line.size < length
-      line = line.slice(0, length)
+      line = (slice | pad).slice(0, length)
 
       result << line
 
