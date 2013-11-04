@@ -1,17 +1,11 @@
 module Enumerable
 
   def split_up(length:, step: length, pad: [])
-    result = []
+    each_slice(step).map do |slice|
+      line = (slice | pad).take(length)
 
-    self.each_slice(step) do |slice|
-      line = (slice | pad).slice(0, length)
-
-      result << line
-
-      yield line if block_given?
+      block_given? ? (yield line) : line
     end
-
-    result
   end
 
 end
