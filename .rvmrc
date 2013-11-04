@@ -1,1 +1,1 @@
-rvm --create 1.9.3@ruby-homework
+rvm use ruby-head@ruby_fmi
