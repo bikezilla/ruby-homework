@@ -7,10 +7,9 @@ describe TodoList do
       CURRENT | Grok Ruby.                   | High   | development, ruby
       DONE    | Have some tea.               | Normal |
       TODO    | Destroy Facebook and Google. | High   | save humanity, conspiracy
-      TODO    | Hunt saber-toothed cats.     | Low    | wtf
       DONE    | Do the 5th Ruby challenge.   | High   | ruby course, FMI, development, ruby
       TODO    | Find missing socks.          | Low    |
-      CURRENT | Grow epic mustache.          | High   | sex appeal
+      TODO    | Occupy Sofia University      | High   | #ДАНСwithMe, #occupysu, #оставка
     END
   end
 
@@ -25,7 +24,7 @@ describe TodoList do
   end
 
   it "filters tasks by tag" do
-    todo_list.filter(Criteria.tags %w[wtf]).map(&:description).should =~ ['Hunt saber-toothed cats.']
+    todo_list.filter(Criteria.tags %w[health]).map(&:description).should =~ ['Get 8 hours of sleep.']
   end
 
   it "filters tasks by tag 2" do
@@ -48,7 +47,11 @@ describe TodoList do
 
   it "supports a conjuction of filters" do
     filtered = todo_list.filter Criteria.status(:todo) & Criteria.priority(:high)
-    filtered.map(&:description).should =~ ['Eat spaghetti.', 'Destroy Facebook and Google.']
+    filtered.map(&:description).should =~ [
+                                           'Eat spaghetti.',
+                                           'Destroy Facebook and Google.',
+                                           'Occupy Sofia University'
+                                          ]
   end
 
   it "supports a disjunction of filters" do
