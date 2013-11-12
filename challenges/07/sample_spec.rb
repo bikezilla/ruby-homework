@@ -12,4 +12,26 @@ describe "Bitmap" do
 ..**...*
     ASCII
   end
+
+  it 'renders bytes 1' do
+    Bitmap.new([1, 10, 100]).render.should eq <<-ASCII.strip
+.......#....#.#..##..#..
+    ASCII
+  end
+
+  it 'renders bytes 2' do
+    bitmap = Bitmap.new [1, 10, 100]
+    bitmap.render(['+', '@']).should eq <<-ASCII.strip
++++++++@++++@+@++@@++@++
+    ASCII
+  end 
+
+  it 'renders bytes 3' do
+    bitmap = Bitmap.new [1, 11], 1
+    bitmap.render(['.', '_', '+', '@']).should eq <<-ASCII.strip
+..._
+..+@
+    ASCII
+  end
+
 end
